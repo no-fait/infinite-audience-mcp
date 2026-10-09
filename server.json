@@ -1,0 +1,32 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.no-fait/infinite-audience",
+  "title": "Infinite Audience",
+  "description": "Discover audiences, build segments, match and deliver data. Some actions may incur billable usage.",
+  "icons": [
+    {
+      "src": "https://infiniteaudience.ai/assets/ia-shield.png",
+      "mimeType": "image/png",
+      "sizes": ["300x300"]
+    }
+  ],
+  "websiteUrl": "https://docs.infiniteaudience.ai/agents/mcp/",
+  "version": "1.0.3",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.infiniteaudience.ai/mcp"
+    }
+  ],
+  "_meta": {
+    "io.modelcontextprotocol.registry/publisher-provided": {
+      "publisherName": "NO FAIT (dba Infinite Audience)",
+      "productWebsiteUrl": "https://infiniteaudience.ai",
+      "documentationUrl": "https://docs.infiniteaudience.ai/agents/mcp/",
+      "supportUrl": "https://infiniteaudience.ai/contact",
+      "contactEmail": "support@infiniteaudience.ai",
+      "privacyPolicyUrl": "https://nofait.ai/privacy",
+      "termsOfServiceUrl": "https://nofait.ai/terms"
+    }
+  }
+}

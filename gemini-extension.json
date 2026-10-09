@@ -1,0 +1,10 @@
+{
+  "name": "infinite-audience",
+  "version": "1.0.3",
+  "description": "Connect to Infinite Audience for audience discovery, segments, matching, and delivery. Some actions incur billable usage.",
+  "mcpServers": {
+    "infinite-audience": {
+      "httpUrl": "https://mcp.infiniteaudience.ai/mcp"
+    }
+  }
+}
