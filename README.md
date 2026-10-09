@@ -1,6 +1,6 @@
 # Infinite Audience MCP
 
-Public client configuration and installation documentation for [Infinite Audience](https://infiniteaudience.ai), published by NO FAIT. Connect your AI workspace to audience discovery, segment building, data matching, and audience delivery through our hosted MCP service.
+[Infinite Audience](https://infiniteaudience.ai) brings **Identity Resolution & Enrichment** to your AI workspace. Turn the customer data you already have into a clearer picture of the people behind it: connect records to our identity graph, receive durable, organization-scoped Person IDs for strong matches, and enrich them with the attributes you choose. Resolve identities, refresh customer intelligence, and put richer data to work through your preferred AI assistant. [Explore Identity Resolution & Enrichment →](https://docs.infiniteaudience.ai/product/identity-resolution/)
 
 **Endpoint:** `https://mcp.infiniteaudience.ai/mcp`
 
@@ -30,12 +30,6 @@ See [client setup](docs/connectivity.md) for Antigravity, Gemini CLI, Claude Cod
 | `server.json` | Public copy of official MCP Registry metadata |
 
 These are configuration packages. No server binary, npm installation, dataset, or private platform source is distributed here. Additional vendor formats can share this repository. Vendor-specific archives can be produced if a future installer requires a different root layout.
-
-## Compatibility and listings
-
-The manifests follow the linked vendor documentation. Configuration validation is not a completed OAuth integration test. Antigravity and Gemini CLI end-to-end sign-in/tool-discovery verification remains pending as of October 9, 2026.
-
-The official MCP Registry has version 1.0.3 published. Separate directory applications do not establish approval or public visibility. OpenAI and Anthropic submissions have been made; approval/listing visibility is not asserted here. GitHub directory onboarding has been requested. Antigravity intake is drafted and unsubmitted; Cursor marketplace work is deferred. See [distribution notes](docs/distribution.md).
 
 ## Maintenance
 

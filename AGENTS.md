@@ -2,7 +2,7 @@
 
 This repo contains intentionally public Infinite Audience connection configuration and documentation. Do not add platform source, credentials, customer records, environment files, or internal reviewer/submission details.
 
-Preserve each client's schema. Keep endpoint and billing disclosures consistent; avoid hard-coded tool counts. Update only confirmed listing and compatibility statuses. Configuration validation does not establish successful live OAuth.
+Preserve each client's schema. Keep endpoint and billing disclosures consistent; avoid hard-coded tool counts. Keep public content focused on customer capabilities, connection setup, authentication, and billing. Do not publish submission progress, review queues, draft intake forms, deferred vendor work, or internal test checklists. Configuration validation does not establish successful live OAuth; avoid unsupported compatibility claims.
 
 Run `python3 scripts/validate.py` after changes. Review the full public diff before publishing. Live verification should use authentication and tool listing; billable matching/delivery requires separate explicit authorization. Do not automate paid test calls.
 
