@@ -14,7 +14,7 @@
 
 You need an Infinite Audience account and the appropriate organization permissions. Use your client's OAuth sign-in; the service supports discovery, dynamic client registration, and PKCE. Tokens belong in the client's credential store, not these files. No API key or shared client secret is included.
 
-Start with `discovery`. Add `account-read` for usage, balance, and existing top-up status. Grant `creator` only for creating, enriching, matching, or delivering data. Discovery can run backend queries or update cached state; it is not universally read-only. Some actions incur billable usage under your Infinite Audience account. Review requested scopes, tool inputs, quotes where available, and each consequential action before approving it.
+Start with `discovery`. Add `account-read` for usage, balance, and existing top-up status. Grant `creator` only for creating, enriching, matching, or delivering data. Discovery can run backend queries or update cached state; it is not universally read-only. Some actions count toward usage under your Infinite Audience account. Review requested scopes, tool inputs, quotes where available, and each consequential action before approving it.
 
 ## Choose your client
 
