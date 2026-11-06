@@ -37,6 +37,8 @@ These are configuration packages. No server binary, npm installation, dataset, o
 
 Run `python3 scripts/validate.py` to check manifest consistency without contacting the hosted service. Keep endpoint, identity, contact links, and billing disclosures aligned across formats. Do not replace format-specific field names with a single generic configuration.
 
+Maintainers publish official Registry metadata using the manual **Publish official MCP Registry metadata** workflow on `main`, entering the version already recorded in `server.json`. The workflow validates the files, authenticates with GitHub Actions OIDC, publishes, and checks the Registry response. It does not require a personal access token and never runs automatically on a push. Keep `server.json` synchronized with the platform source before publication.
+
 The distribution version and hosted server's registry version are separate release concepts, even when their numbers currently coincide. Publishing this repo does not update or deploy the service.
 
 ## License

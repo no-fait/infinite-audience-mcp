@@ -1,0 +1,68 @@
+name: Publish official MCP Registry metadata
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version already recorded in server.json (publication is immutable)'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: official-mcp-registry-publication
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.repository == 'no-fait/infinite-audience-mcp' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v5
+      - name: Validate public distribution metadata
+        run: python3 scripts/validate.py
+      - name: Confirm the intended version
+        env:
+          EXPECTED_VERSION: ${{ inputs.version }}
+        run: |
+          python3 - <<'PY'
+          import json, os
+          server = json.load(open('server.json'))
+          assert server['version'] == os.environ['EXPECTED_VERSION'], 'Requested version differs from server.json'
+          PY
+      - name: Install the pinned official publisher
+        run: |
+          curl --fail --silent --show-error --location \
+            https://github.com/modelcontextprotocol/registry/releases/download/v1.8.8/mcp-publisher_linux_amd64.tar.gz \
+            --output "$RUNNER_TEMP/mcp-publisher.tar.gz"
+          printf '%s  %s\n' \
+            09f1fa70ee146b640584274a1a6b2b8a0310b05d4321fa9224e6df6a016d67f4 \
+            "$RUNNER_TEMP/mcp-publisher.tar.gz" | sha256sum --check -
+          tar -xzf "$RUNNER_TEMP/mcp-publisher.tar.gz" -C "$RUNNER_TEMP" mcp-publisher
+      - name: Validate with the official Registry
+        run: '"$RUNNER_TEMP/mcp-publisher" validate server.json'
+      - name: Authenticate using GitHub Actions OIDC
+        run: '"$RUNNER_TEMP/mcp-publisher" login github-oidc'
+      - name: Publish the reviewed metadata
+        run: '"$RUNNER_TEMP/mcp-publisher" publish server.json'
+      - name: Verify the published entry
+        run: |
+          python3 - <<'PY'
+          import json, urllib.parse, urllib.request
+          expected = json.load(open('server.json'))
+          base = 'https://registry.modelcontextprotocol.io/v0.1/servers/'
+          name = urllib.parse.quote(expected['name'], safe='')
+          for version in (expected['version'], 'latest'):
+              url = base + name + '/versions/' + urllib.parse.quote(version, safe='')
+              with urllib.request.urlopen(url, timeout=30) as response:
+                  actual = json.load(response)['server']
+              for field in ('name', 'version', 'description', 'remotes'):
+                  assert actual[field] == expected[field], f'Published {field} differs at {version}'
+          print('Verified the published version and latest Registry metadata.')
+          PY
