@@ -27,6 +27,7 @@ def main():
     require(remote['type'] == 'streamable-http', 'Expected Streamable HTTP')
     endpoint = remote['url']
     require(endpoint == 'https://mcp.infiniteaudience.ai/mcp', 'Unexpected hosted endpoint')
+    require(server['_meta']['io.modelcontextprotocol.registry/publisher-provided']['distributionRepositoryUrl'] == 'https://github.com/no-fait/infinite-audience-mcp', 'Distribution repository link drift')
     plugin = load('plugin.json')
     require(set(plugin) == {'name', 'description'}, 'Unexpected Antigravity metadata')
     require(plugin['name'] == 'infinite-audience', 'Plugin identity drift')

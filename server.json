@@ -11,7 +11,7 @@
     }
   ],
   "websiteUrl": "https://docs.infiniteaudience.ai/agents/mcp/",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "remotes": [
     {
       "type": "streamable-http",
@@ -26,7 +26,8 @@
       "supportUrl": "https://infiniteaudience.ai/contact",
       "contactEmail": "support@infiniteaudience.ai",
       "privacyPolicyUrl": "https://nofait.ai/privacy",
-      "termsOfServiceUrl": "https://nofait.ai/terms"
+      "termsOfServiceUrl": "https://nofait.ai/terms",
+      "distributionRepositoryUrl": "https://github.com/no-fait/infinite-audience-mcp"
     }
   }
 }
