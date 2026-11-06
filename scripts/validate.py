@@ -49,7 +49,8 @@ def main():
     codex = (ROOT / 'examples/codex/config.toml').read_text()
     require(codex == f'[mcp_servers.infinite-audience]\nurl = "{endpoint}"\n',
             'Codex endpoint drift or unexpected configuration')
-    require('count toward account usage' in server['description'].lower(), 'Registry account-usage disclosure missing')
+    require(server['description'] == 'Enrich customer data, discover high-fidelity net-new audiences, and activate them in your channels.',
+            'Approved registry topline description drift')
     for path in ROOT.rglob('*.md'):
         for target in re.findall(r'\]\(([^)]+)\)', path.read_text()):
             if '://' not in target and not target.startswith('#'):
