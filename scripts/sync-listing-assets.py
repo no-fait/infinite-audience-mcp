@@ -12,7 +12,8 @@ def outputs():
     meta = server['_meta']['io.modelcontextprotocol.registry/publisher-provided']
     endpoint = server['remotes'][0]['url']
     manifest = {
-        'identifier': 'infinite-audience',
+        # Preserve the marketplace's existing repository-import identity.
+        'identifier': 'no-fait-infinite-audience-mcp',
         'name': server['title'],
         'version': server['version'],
         'description': server['description'],
