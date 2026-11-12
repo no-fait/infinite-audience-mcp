@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Validate distribution invariants locally; never contact the hosted service."""
 import json
+import ast
 import re
 import subprocess
 import sys
@@ -19,6 +20,8 @@ def load(name):
 
 
 def main():
+    for path in (ROOT / 'scripts').glob('*.py'):
+        ast.parse(path.read_text(), filename=str(path))
     subprocess.run([sys.executable, str(ROOT / 'scripts/sync-listing-assets.py'), '--check'], check=True)
     for path in ROOT.rglob('*.json'):
         if '.git' not in path.parts:
