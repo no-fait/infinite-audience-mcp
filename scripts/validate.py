@@ -2,6 +2,8 @@
 """Validate distribution invariants locally; never contact the hosted service."""
 import json
 import re
+import subprocess
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -17,6 +19,7 @@ def load(name):
 
 
 def main():
+    subprocess.run([sys.executable, str(ROOT / 'scripts/sync-listing-assets.py'), '--check'], check=True)
     for path in ROOT.rglob('*.json'):
         if '.git' not in path.parts:
             json.loads(path.read_text())
@@ -51,6 +54,11 @@ def main():
             'Codex endpoint drift or unexpected configuration')
     require(server['description'] == 'Enrich customer data, discover high-fidelity net-new audiences, and activate them in your channels.',
             'Approved registry topline description drift')
+    skill = (ROOT / 'SKILL.md').read_text()
+    require(skill.startswith('---\nname: infinite-audience\ndescription: '), 'Skill identity/frontmatter drift')
+    require(endpoint in skill, 'Skill endpoint drift')
+    require('https://docs.infiniteaudience.ai/agents/mcp/' in skill, 'Skill must use canonical MCP documentation')
+    require('https://docs.infiniteaudience.ai/developers/operating-guide/' in skill, 'Skill must use canonical operating guide')
     for path in ROOT.rglob('*.md'):
         for target in re.findall(r'\]\(([^)]+)\)', path.read_text()):
             if '://' not in target and not target.startswith('#'):

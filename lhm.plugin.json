@@ -1,0 +1,17 @@
+{
+  "identifier": "infinite-audience",
+  "name": "Infinite Audience",
+  "version": "1.0.5",
+  "description": "Enrich customer data, discover high-fidelity net-new audiences, and activate them in your channels.",
+  "author": "NO FAIT (dba Infinite Audience)",
+  "authorUrl": "https://github.com/no-fait",
+  "homepage": "https://docs.infiniteaudience.ai/agents/mcp/",
+  "cloudEndpoint": "https://mcp.infiniteaudience.ai/mcp",
+  "icon": "https://infiniteaudience.ai/assets/ia-shield.png",
+  "tags": [
+    "identity-resolution",
+    "data-enrichment",
+    "audiences",
+    "marketing"
+  ]
+}

@@ -22,6 +22,18 @@ Start with `discovery`. Add `account-read` for usage, balance, and existing top-
 
 See [client setup](docs/connectivity.md) for Antigravity, Gemini CLI, Claude Code, Claude web/desktop, Codex, ChatGPT, Cursor, and general remote MCP clients.
 
+## Add the workflow skill
+
+```sh
+npx skills add no-fait/infinite-audience-mcp --skill infinite-audience
+```
+
+The [public skill](SKILL.md) helps an assistant discover the live schema, plan enrichment, build audiences, and prepare activation. Skill installation adds instructions; connect and authenticate the MCP server separately. The skill links to maintained public docs and uses the current tool catalog instead of embedding a copy of every tool definition.
+
+## Reusable listing information
+
+Use the [listing assets](docs/listing-assets.md) for canonical descriptions, icon, documentation, privacy, support, and connection links. `lhm.plugin.json` provides LobeHub-specific metadata with the hosted endpoint. Neither file contains credentials or a static copy of the tool catalog.
+
 | File | Purpose |
 | --- | --- |
 | `plugin.json`, `mcp_config.json` | Antigravity plugin connecting to the hosted service |
@@ -30,12 +42,17 @@ See [client setup](docs/connectivity.md) for Antigravity, Gemini CLI, Claude Cod
 | `examples/codex/config.toml` | Codex configuration fragment |
 | `examples/cursor/mcp.json` | Cursor connection configuration; not a marketplace plugin |
 | `server.json` | Public copy of official MCP Registry metadata |
+| `SKILL.md` | Installable workflow guidance for agents |
+| `lhm.plugin.json` | LobeHub Marketplace metadata generated from `server.json` |
+| `docs/listing-assets.md` | Reusable public listing copy and canonical links |
 
 These are configuration packages. No server binary, npm installation, dataset, or private platform source is distributed here. Additional vendor formats can share this repository. Vendor-specific archives can be produced if a future installer requires a different root layout.
 
 ## Maintenance
 
 Run `python3 scripts/validate.py` to check manifest consistency without contacting the hosted service. Keep endpoint, identity, contact links, and billing disclosures aligned across formats. Do not replace format-specific field names with a single generic configuration.
+
+`server.json` is the source for shared listing metadata. After changing it, run `python3 scripts/sync-listing-assets.py`; validation rejects stale generated assets. The LobeHub manifest version follows that metadata version and does not assert a new hosted-service deployment. Tool definitions remain discoverable from the live endpoint. See the [publishing guide](docs/publishing.md) for skills.sh and LobeHub maintenance.
 
 Maintainers publish official Registry metadata using the manual **Publish official MCP Registry metadata** workflow on `main`, entering the version already recorded in `server.json`. The workflow validates the files, authenticates with GitHub Actions OIDC, publishes, and checks the Registry response. It does not require a personal access token and never runs automatically on a push. Keep `server.json` synchronized with the platform source before publication.
 
