@@ -25,12 +25,20 @@ npx --yes @lobehub/market-cli github status
 
 If needed, have the publisher complete `login` and `github connect` interactively. Use a GitHub account with push access to this repository. Check `plugin list --output json` and public search for an existing listing before creating one. If an existing listing has a different identifier, reconcile that identity before publication; do not create a duplicate.
 
-Once the reviewed files are on the default branch, publish a new listing using the absolute checkout directory:
+Once the reviewed files are on the default branch, prepare a fresh owner declaration outside the repository:
 
 ```sh
-npx --yes @lobehub/market-cli plugin publish https://github.com/no-fait/infinite-audience-mcp --dir /absolute/path/to/infinite-audience-mcp
+python3 scripts/prepare-lobehub.py --output-dir /absolute/path/to/new-lobehub-staging
 ```
 
-For an already-owned listing, use `plugin update --dir /absolute/path/to/infinite-audience-mcp` instead. The [manifest](../lhm.plugin.json) intentionally omits static tool/resource/prompt arrays: the remote MCP endpoint is the current capability source. Check the actual listing and install path after repository enrichment; metadata validation alone does not establish OAuth compatibility. If the marketplace cannot represent the endpoint's OAuth requirement accurately, correct that before recommending its installer.
+This uses the official CLI's public MCP discovery, supplies the canonical description when MCP server info omits one, and merges live tools/resources/prompts with the generated metadata. It does not authenticate to Infinite Audience, execute tools, or publish. Review the staged JSON before proceeding. Do not check this capability snapshot into Git; regenerate it for every update so retired tools are removed and new schemas are current.
+
+For a new listing, publish the staged declaration:
+
+```sh
+npx --yes @lobehub/market-cli plugin publish https://github.com/no-fait/infinite-audience-mcp --dir /absolute/path/to/new-lobehub-staging
+```
+
+For an already-owned listing, use `plugin update --dir /absolute/path/to/new-lobehub-staging` instead. Updating with the metadata-only [manifest](../lhm.plugin.json) is insufficient to refresh LobeHub's capability flags/tool schemas. The repository intentionally omits static tool/resource/prompt arrays: the preparation script reads the remote MCP endpoint each time. Check the actual listing and install path after repository enrichment; metadata validation alone does not establish OAuth compatibility. Confirm that the preferred method is the hosted URL and OAuth, not an inferred local binary. If the marketplace cannot represent the endpoint's OAuth requirement accurately, correct that before recommending its installer.
 
 Use `plugin list --output json` to verify ownership and the published version, then inspect the public listing for the description, endpoint, authentication requirements, documentation, icon, and tool discovery. This repository's publication does not imply approval in other directories.
