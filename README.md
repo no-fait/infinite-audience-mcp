@@ -10,6 +10,8 @@
 
 [Full documentation](https://docs.infiniteaudience.ai/agents/mcp/) · [Support](https://infiniteaudience.ai/contact) · [Privacy](https://nofait.ai/privacy) · [Service terms](https://nofait.ai/terms)
 
+[![Infinite Audience MCP on AI Agents Listing](https://aiagentslisting.com/infinite-audience-mcp/badge.svg?claim=8da143ca42d76a2d5f530237617e6e1c)](https://aiagentslisting.com/mcp/infinite-audience-mcp)
+
 ## Authentication and usage
 
 The server publishes its tool definitions through tokenless MCP discovery (`initialize`, `tools/list`, `ping`, and `notifications/initialized`). Every tool call requires authentication, including read-only operations. Once authenticated, a connection receives the tools its granted scopes allow. Refresh the tool list after sign-in.
