@@ -10,7 +10,7 @@
 
 [Full documentation](https://docs.infiniteaudience.ai/agents/mcp/) · [Support](https://infiniteaudience.ai/contact) · [Privacy](https://nofait.ai/privacy) · [Service terms](https://nofait.ai/terms)
 
-[![Infinite Audience MCP on AI Agents Listing](https://aiagentslisting.com/infinite-audience-mcp/badge.svg?claim=8da143ca42d76a2d5f530237617e6e1c)](https://aiagentslisting.com/mcp/infinite-audience-mcp)
+[![Infinite Audience MCP on AI Agents Listing](https://aiagentslisting.com/infinite-audience-mcp/badge.svg)](https://aiagentslisting.com/mcp/infinite-audience-mcp)
 
 ## Authentication and usage
 
